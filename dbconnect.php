@@ -12,4 +12,5 @@
    {
       echo "Opened Database Successfully\n";
    }
+   //echo
 ?>

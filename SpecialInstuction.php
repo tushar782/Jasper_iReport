@@ -52,7 +52,7 @@ $query = ' select "REVOKE_DATE" from specialinstruction
            where cast(SPECIALINSTRUCTION."INSTRUCTION_DATE" as date) >= cast('.$sdate_.' as date)
            And cast(SPECIALINSTRUCTION."INSTRUCTION_DATE" as date) <= cast('.$edate_.' as date)';
 
-           echo $query;
+           //echo $query;
           
 $sql =  pg_query($conn,$query);
 
@@ -68,7 +68,7 @@ else
 {
 while($row = pg_fetch_assoc($sql))
 {
-   // echo $sql;
+   
 
     $tmp=[
         'TRAN_ACNO' => $row['TRAN_ACNO'],

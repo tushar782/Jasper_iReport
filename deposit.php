@@ -22,9 +22,6 @@ $conn = pg_connect("host=127.0.0.1 dbname=bank user=postgres password=tushar");
  $sdate = $_GET['sdate'];
  $edate = $_GET['edate'];
 
-
-
-
 $schemecode = "'TD'";
 $dateformat ="'DD/MM/YYYY'";
 $ac_type ="'15'";
@@ -51,9 +48,9 @@ $sql =  pg_query($conn,$query);
 
 
 while($row = pg_fetch_assoc($sql))
-{
+{ 
     
-    
+
     $tmp=[
         'PRINT_TIME' => $row['PRINT_TIME'],
         'REASON_OF_DUPLICATE' => $row['REASON_OF_DUPLICATE'],
@@ -97,5 +94,4 @@ $report->load_xml_file($filename)
     ->setDataSource($config)
     ->export('Pdf');
     
-
 ?>

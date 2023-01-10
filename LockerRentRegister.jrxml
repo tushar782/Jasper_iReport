@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LockerRentRegister" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="86016ba6-cac2-484e-835a-10ec450c7d4c">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="BRANCH_NAME" class="java.lang.String"/>
+	<field name="AC_NAME" class="java.lang.String"/>
+	<field name="AC_NO" class="java.lang.String"/>
+	<field name="sdate" class="java.lang.String"/>
+	<field name="edate" class="java.lang.String"/>
+	<field name="print_date" class="java.lang.String"/>
+	<field name="FLAG1" class="java.lang.String"/>
+	<field name="FLAG2" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="42" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="22" width="87" height="20" uuid="3194e108-e5a9-4e97-a6f4-aeefb3e3ba81"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BRANCH_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="76" height="20" uuid="9d02feae-1afb-45d5-b631-48f23c20cfbc"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Branch Name]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="198" y="0" width="71" height="20" uuid="71fb8233-55fb-407c-86e0-8413e309b31f"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sdate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="269" y="0" width="21" height="20" uuid="884313ef-870c-4401-ab3c-d2ba901177d8"/>
+				<text><![CDATA[TO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="290" y="0" width="66" height="20" uuid="be109e81-4682-4cf2-a6ba-4abb49cf6356"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{edate}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="233" y="20" width="57" height="20" uuid="4b26e27c-9917-4d6c-a1eb-e7fafba55ca7"/>
+				<textFieldExpression><![CDATA[$F{FLAG1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="20" width="66" height="20" uuid="34c1223c-8a81-4608-a2a2-e319df55f999"/>
+				<textFieldExpression><![CDATA[$F{FLAG2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="105" splitType="Stretch">
+			<textField>
+				<reportElement x="157" y="21" width="76" height="19" uuid="ec3a4fc6-5cf3-44f9-a044-eba1d5263c7a"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AC_NAME}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="0" width="44" height="20" uuid="a1d89452-2777-466c-96b4-50dffc4beb61"/>
+				<text><![CDATA[SR.NO.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="20" width="555" height="1" uuid="02b9d852-f64a-4483-967a-7b900611a36b"/>
+			</line>
+			<textField>
+				<reportElement x="57" y="21" width="54" height="19" uuid="b1d88cfe-4ff8-4a8d-88b3-d9bce42e744f"/>
+				<textElement>
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AC_NO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="57" y="0" width="80" height="20" uuid="395818d4-f76f-43e7-8818-51c2f57ea839"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[ACOUNT NUMBER]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="157" y="1" width="76" height="19" uuid="05a43ef3-b3c1-4156-b8f3-c8cead1631a2"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[NAME]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="40" width="555" height="1" uuid="e24bcc55-bef3-4824-8cee-1fcb160704eb"/>
+			</line>
+			<staticText>
+				<reportElement x="440" y="0" width="100" height="19" uuid="8c57e255-1089-46fd-9dd8-fccd697d9a9e"/>
+				<text><![CDATA[RENT BALANCE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="1" width="100" height="20" uuid="4c28f6df-bfe7-4580-8906-dfd6128237e9"/>
+				<text><![CDATA[RENT UPTO DATE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="65" width="555" height="1" uuid="ff6a0728-4e15-4c61-8dd4-de23918eacc6"/>
+			</line>
+			<staticText>
+				<reportElement x="251" y="41" width="50" height="20" uuid="828c5dd9-3dc3-491d-ad79-c6ab92844475"/>
+				<text><![CDATA[TOTAL :-]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="11" y="66" width="65" height="20" uuid="3b2165d1-858e-405f-8812-fe2abf63bb76"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Cashier]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="27" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="29" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="15" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="14" splitType="Stretch"/>
+	</summary>
+</jasperReport>

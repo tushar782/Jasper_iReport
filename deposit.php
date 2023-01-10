@@ -40,7 +40,7 @@ AND TDRECEIPTISSUE."AC_NO"=dpmaster."AC_NO"
 AND dpmaster."AC_ACNOTYPE" = '.$schemecode.'
 AND dpmaster."AC_TYPE" = '.$ac_type.''; 
 
-  // echo $query;
+//   echo $query;
           
 $sql =  pg_query($conn,$query);
 
@@ -74,7 +74,7 @@ while($row = pg_fetch_assoc($sql))
         'AC_TYPE'=> $row['AC_TYPE'],
         'AC_NO'=> $row['AC_NO'],
         'SCHEME'=>$row['SCHEME'],
-        'ac_type' => 15,
+        'ac_type' => '$ac_type',
         'sdate' => $sdate,
         'edate' => $edate ,
         'branch' => 'SULGAON' , 

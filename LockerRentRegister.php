@@ -18,11 +18,12 @@ $conn = pg_connect("host=127.0.0.1 dbname=bank user=postgres password=tushar");
 
 // variables
 
- $ac_type = $_GET['ac_type'];
- $sdate = $_GET['sdate'];
- $edate = $_GET['edate'];
- $FLAG1 = $_GET['FLAG1'];
- $FLAG2 = $_GET['FLAG2'];
+$ac_type = $_GET['ac_type'];
+$sdate = $_GET['sdate'];
+$edate = $_GET['edate'];
+$FLAG1 = $_GET['FLAG1'];
+$FLAG2 = $_GET['FLAG2'];
+$bank_name = $_GET['bank_name'];
 
 $schemecode = "'SB'";
 $ac_type ="'8'";
@@ -63,7 +64,6 @@ $sql =  pg_query($conn,$query);
 
  $i = 0;
 
-
 while($row = pg_fetch_assoc($sql))
 { 
     
@@ -80,10 +80,11 @@ while($row = pg_fetch_assoc($sql))
         'ac_type' => '$ac_type',
         'sdate' => $sdate,
         'edate' => $edate ,
-        'BRANCH_NAME'=> $BRANCH_NAME,
+        'branch_name'=> 'WADGAON',
+        'bank_name'=> 'ABC',
         'FLAG1' => $FLAG1,
         'FLAG2' => $FLAG2, 
-        // 'print_date'=>  $print_date,
+        
     ];
     $data[$i]=$tmp;
     $i++;  

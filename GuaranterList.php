@@ -16,67 +16,62 @@ $faker = Faker\Factory::create('en_US');
 
  $conn = pg_connect("host=127.0.0.1 dbname=bank user=postgres password=tushar");
 
+
+ //variables
+$PRINT_DATE = $_GET['PRINT_DATE'];
+$BRANCH_CODE = $_GET['BRANCH_CODE'];
+$START_DATE = $_GET['START_DATE'];
+$END_DATE = $_GET['END_DATE'];
+$AC_ACNOTYPE = $_GET['AC_ACNOTYPE'];
+$AC_TYPE = $_GET['AC_TYPE'];
 $bankName = $_GET['bankName'];
-$startDate = $_GET['startDate'];
-$enddate = $_GET['enddate'];
+$NAME = $_GET['NAME'];
+// $scheme = $_GET['scheme'];      
+// $branch = $_GET['branch'];
 $dateformate = "'DD/MM/YYYY'";
-$scheme = $_GET['scheme'];
-$branch = $_GET['branch'];
-$startDate = "'01/01/2020'";
-$enddate = "'07/08/2021'";
 
 
- $query = ' SELECT idmaster."AC_NAME",customeraddress."AC_ADDR" as addres,lnmaster."AC_CLOSEDT",lnmaster."AC_NO"
-            From customeraddress,idmaster,lnmaster
-            Union All
-            Select customeraddress."AC_ADDR" as addres, guaranterdetails."AC_NAME" as gname,lnmaster."AC_CLOSEDT",lnmaster."AC_NO"
-            From customeraddress,guaranterdetails,lnmaster
-            where 
-            cast("AC_CLOSEDT" as date) 
-            between to_date('.$startDate.','.$dateformate.') and to_date('.$enddate.','.$dateformate.')
-            ';
-// $query ='  SELECT "AC_NAME",addres,"AC_CLOSEDT","AC_NO" 
-//             FROM(
-//              SELECT
-//                    idmaster."AC_NAME",customeraddress."AC_ADDR" as addres,lnmaster."AC_CLOSEDT",lnmaster."AC_NO"
-//             From 
-//                    idmaster
-//                   inner join lnmaster on idmaster."id"=lnmaster."AC_CUSTID"
-//                   inner join customeraddress on idmaster."id"=customeraddress."idmasterID"
-//             Union All
-//             Select 
-//                     customeraddress."AC_ADDR" as addres, guaranterdetails."AC_NAME" as gname,lnmaster."AC_CLOSEDT",lnmaster."AC_NO"
-//             From 
-//                     lnmaster
-//                    inner join customeraddress on lnmaster."AC_CUSTID"=customeraddress."idmasterID"
-//                    inner join guaranterdetails on lnmaster."AC_CUSTID"=guaranterdetails."lnmasterID"
-            
-//             )Result
-            // -- where 
-            // --       cast("AC_CLOSEDT" as date) 
-            // --       between to_date('.$startDate.','.$dateformate.') and to_date('.$enddate.','.$dateformate.')
-            //       ';
 
+ $query = 'SELECT LNMASTER."AC_ACNOTYPE",LNMASTER."AC_TYPE",LNMASTER."AC_NO",LNMASTER."AC_NAME",CUSTOMERADDRESS."AC_WARD",CUSTOMERADDRESS."AC_ADDR",
+           GUARANTERDETAILS."AC_NAME" "GAC_NAME" ,CITYMASTER."CITY_NAME",SCHEMAST."S_NAME"
+           FROM LNMASTER
+           INNER JOIN GUARANTERDETAILS ON LNMASTER."idmasterID" = GUARANTERDETAILS."lnmasterID"
+           LEFT JOIN SHMASTER ON CAST(GUARANTERDETAILS."MEMBER_TYPE" AS INTEGER) = SHMASTER."AC_TYPE"
+           LEFT JOIN SCHEMAST ON  CAST(GUARANTERDETAILS."AC_TYPE" AS INTEGER) = SCHEMAST.ID
+           LEFT JOIN CITYMASTER ON CITYMASTER."CITY_CODE" = LNMASTER."AC_TYPE"
+           LEFT OUTER JOIN CUSTOMERADDRESS ON LNMASTER.id = CUSTOMERADDRESS."idmasterID"
+           AND(LNMASTER."AC_OPDATE" IS NULL OR CAST(LNMASTER."AC_OPDATE" AS DATE) <= DATE('.$START_DATE.')) 
+           AND(LNMASTER."AC_CLOSEDT" IS NULL OR CAST(LNMASTER."AC_CLOSEDT" AS DATE) > DATE('.$END_DATE.')) 
+           AND LNMASTER."AC_ACNOTYPE" ='.$AC_ACNOTYPE.' 
+           AND LNMASTER."AC_TYPE" ='.$AC_TYPE.'
+           AND LNMASTER."BRANCH_CODE" = '.$BRANCH_CODE.'
+           ORDER BY LNMASTER."AC_ACNOTYPE", LNMASTER."AC_TYPE", LNMASTER."AC_NO"';
+
+        //    echo $query; 
 
           
 $sql =  pg_query($conn,$query);
 
 $i = 0;
-while($row = pg_fetch_assoc($sql)){ 
+while($row = pg_fetch_assoc($sql))
+{ 
 
      $tmp=[
         'AC_NO' => $row['AC_NO'],
-        'AC_NAME'=> $row['AC_NAME'],
-        'addres'=> $row['addres'],
-        'AC_CLOSEDT' => $row['AC_CLOSEDT'],
-        'gname'=> $row['gname'],
-        'gaddres'=> $row['gaddres'],
-        'NAME'=> $row['NAME'],
-        'AC_ACNOTYPE' => $scheme,
-        'NAME' => $branch ,
-        'START_DATE' => $startDate,
-        'END_DATE' => $enddate,
-        'bankName' => $bankName,
+        'AC_NAME' => $row['GAC_NAME'],
+        'AC_WARD' => $row['AC_WARD'],
+        'AC_ADDR' => $row['AC_ADDR'],
+        'CITY_NAME'=> $row['CITY_NAME'],
+        'GAC_NAME'=> $row['GAC_NAME'],
+        'S_NAME' => $row['S_NAME'],
+        // 'BRANCH' => $BRANCH,
+        'AC_ACNOTYPE' => $AC_ACNOTYPE,
+        'AC_TYPE' => $AC_TYPE,
+        'bankName'=> $bankName,
+        'NAME' => $NAME,
+        'BRANCH_CODE' => $BRANCH_CODE,
+        'PRINT_DATE' => $PRINT_DATE,
+       
      ];
     
     $data[$i]=$tmp;
@@ -86,7 +81,7 @@ while($row = pg_fetch_assoc($sql)){
 ob_end_clean();
 
 $config = ['driver'=>'array','data'=>$data];
-
+// print_r($data);
 $report = new PHPJasperXML();
 $report->load_xml_file($filename)    
     ->setDataSource($config)

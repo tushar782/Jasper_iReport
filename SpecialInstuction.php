@@ -23,8 +23,8 @@ $conn = pg_connect("host=127.0.0.1 dbname=bank user=postgres password=tushar");
 // $dateformate = "'DD/MM/YYYY'";
  
 
-$sdate_ = $_GET['sdate_'];
-$edate_ = $_GET['edate_'];
+$sdate = $_GET['sdate'];
+$edate = $_GET['edate'];
 $revoke = $_GET['revoke'];
 $bankName = $_GET['bankName'];
 
@@ -48,11 +48,11 @@ $bankName = $_GET['bankName'];
 //            between to_date('.$stdate.','.$dateformate.') and to_date('.$etdate.','.$dateformate.')
 //            AND ownbranchmaster."id" = '.$branch.'  ';
 
-$query = ' select "REVOKE_DATE" from specialinstruction 
-           where cast(SPECIALINSTRUCTION."INSTRUCTION_DATE" as date) >= cast('.$sdate_.' as date)
-           And cast(SPECIALINSTRUCTION."INSTRUCTION_DATE" as date) <= cast('.$edate_.' as date)';
+$query = ' SELECT "REVOKE_DATE" FROM SPECIALINSTRUCTION 
+           WHERE CAST(SPECIALINSTRUCTION."INSTRUCTION_DATE" AS DATE) >= CAST('.$sdate.' AS DATE)
+           AND CAST(SPECIALINSTRUCTION."INSTRUCTION_DATE" AS DATE) <= CAST('.$edate.' AS DATE)';
 
-           //echo $query;
+        //    echo $query;
           
 $sql =  pg_query($conn,$query);
 
@@ -71,20 +71,19 @@ while($row = pg_fetch_assoc($sql))
    
 
     $tmp=[
-        'TRAN_ACNO' => $row['TRAN_ACNO'],
-        'ACCOUNT_NAME'=>$row['ACCOUNT_NAME'],
-        'DETAILS' => $row['DETAILS'],
-        // 'INSTRUCTION_DATE' => $row['INSTRUCTION_DATE'],
-        // 'INSTRUCTION_NO'=> $row['INSTRUCTION_NO'],
-        'NAME' => $row['NAME'],
-        'FROM_DATE'=> $row['FROM_DATE'],
-        'TO_DATE'=> $row['TO_DATE'],
-        'SYSADD_'=> $row['SYSADD_'],
-        'SYSCHING_LOGIN'=> $row['SYSCHING_LOGIN'],
-
-        'branch'=> 'MIDC',
+        // 'TRAN_ACNO' => $row['TRAN_ACNO'],
+        // 'ACCOUNT_NAME'=>$row['ACCOUNT_NAME'],
+        // 'DETAILS' => $row['DETAILS'],
+        // 'NAME' => $row['NAME'],
+        // 'FROM_DATE'=> $row['FROM_DATE'],
+        // 'TO_DATE'=> $row['TO_DATE'],
+        // 'SYSADD_'=> $row['SYSADD_'],
+        // 'SYSCHING_LOGIN'=> $row['SYSCHING_LOGIN'],
+        'sdate' => '$sdate',
+        'edate' => '$edate',
+        'branch'=> '$branch',
         'revoke'=> '$revoke',
-        'bankName'=> 'XYZ',
+        'bankName'=> '$bankName',
        
     ];
     $data[$i]=$tmp;

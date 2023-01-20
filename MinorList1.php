@@ -50,7 +50,9 @@ $dateformate = "'DD/MM/YYYY'";
 
 //get data from table
 
-$query =' SELECT DPMASTER."AC_ACNOTYPE", DPMASTER."AC_TYPE", DPMASTER."AC_NO", DPMASTER."AC_NAME", DPMASTER."AC_MBDATE", DPMASTER."AC_GRDNAME",DPMASTER."AC_GRDRELE", DPMASTER."AC_GRDNAME",DPMASTER."AC_GRDRELE" ,SCHEMAST."S_NAME" 
+$query =' SELECT DPMASTER."AC_ACNOTYPE", DPMASTER."AC_TYPE", DPMASTER."AC_NO", DPMASTER."AC_NAME", DPMASTER."AC_MBDATE", 
+          DPMASTER."AC_GRDNAME",DPMASTER."AC_GRDRELE",  SCHEMAST."S_NAME", SCHEMAST."S_APPL",
+          age(CAST(DPMASTER."AC_OPDATE" AS date), CAST(DPMASTER."AC_CLOSEDT" AS date) ) AS "AGE"
           FROM DPMASTER  
           LEFT OUTER JOIN SCHEMAST 
           ON DPMASTER."AC_ACNOTYPE" = SCHEMAST."S_ACNOTYPE" 
@@ -61,7 +63,7 @@ $query =' SELECT DPMASTER."AC_ACNOTYPE", DPMASTER."AC_TYPE", DPMASTER."AC_NO", D
           AND DPMASTER."AC_ACNOTYPE" = '.$AC_ACNOTYPE.'
           AND DPMASTER."AC_TYPE"     =  '.$ac_type.'
           ORDER BY DPMASTER."AC_ACNOTYPE", DPMASTER."AC_TYPE", DPMASTER."AC_NO" ';
-
+// echo $query;
 $sql =  pg_query($conn,$query);
 
 $i = 0;
@@ -72,15 +74,18 @@ while($row = pg_fetch_assoc($sql)){
 
         'AC_NO'=> $row['AC_NO'],
         'AC_NAME'=> $row['AC_NAME'],
+        'S_APPL' => $row['S_APPL'],
         'AC_ACNOTYPE' =>$scheme,
+        'age'=> $row['AGE'],
         'AC_MBDATE' => $row['AC_MBDATE'],
         'AC_GRDNAME' => $row['AC_GRDNAME'],     
         'AC_GRDRELE' => $row['AC_GRDRELE'],  
-        'age' =>$row['extract'],
+        // 'age' =>$row['extract'],
         'USER_DATE' =>$startDate,
         'scheme' => $scheme,
         'sdate'=> $sdate,
         'edate'=> $edate,
+        'AC_ACNOTYPE' => $AC_ACNOTYPE,
         // 'schemecode'=> 'TD',
         'print_date'=> $print_date,
         'branch_name' => $branch_name,

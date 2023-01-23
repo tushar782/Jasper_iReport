@@ -99,7 +99,7 @@ No.]]></text>
 				<textElement>
 					<font size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[GUARANTER NAME]]></text>
+				<text><![CDATA[Guaranter Name]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="367" y="18" width="100" height="20" uuid="6cef5612-c40d-4baf-890d-859d0bb44363"/>

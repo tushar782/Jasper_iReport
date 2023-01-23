@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SpecialInstruction" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isTitleNewPage="true" isSummaryNewPage="true" isSummaryWithPageHeaderAndFooter="true" uuid="804f9bd0-a7d5-436a-97ab-82dcd6b658b8">
 	<property name="ireport.zoom" value="1.3310000000000004"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="28"/>
 	<property name="ireport.y" value="0"/>
 	<field name="INSTRUCTION_DATE" class="java.lang.String"/>
 	<field name="INSTRUCTION_NO" class="java.lang.String"/>
@@ -228,7 +228,7 @@ Code]]></text>
 				<reportElement x="0" y="18" width="761" height="1" uuid="75bd4981-dcc0-42b6-875f-1f7eec01bf20"/>
 			</line>
 			<textField>
-				<reportElement x="640" y="19" width="80" height="20" uuid="16dd1080-9015-4d48-bc9b-5aebf65db604"/>
+				<reportElement x="656" y="19" width="67" height="20" uuid="16dd1080-9015-4d48-bc9b-5aebf65db604"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
 			</textField>

@@ -14,10 +14,13 @@
            Minor To Major List Report</a></li>  
         <li>6]<a href="http://localhost/phpjasper/examples/GuaranterList.php?START_DATE='24/12/2021'&END_DATE='24/12/2021'&NAME='Wadgaon'&AC_TYPE='7'&AC_ACNOTYPE='TD'&BRANCH_CODE=1&PRINT_DATE='24/12/2021'"> 
            Guaranter List Report</a></li>
-        <li>7]<a href="http://localhost/phpjasper/examples/CustomerIDWiseDepositList.php?START_DATE='10/08/2022'&END_DATE='10/08/2022'&BRANCH='Wadgaon'&AC_TYPE='7'&AC_ACNOTYPE='TD'&PRINT_DATE='24/12/2021'&FLAG1='0'&FLAG2='1'&FLAG3='2'&TRAN_DRCR='D'&CUST_ID='6698'"> 
+        <li>7]<a href="http://localhost/phpjasper/examples/CustomerIDWiseDepositList.php?START_DATE='10/08/2022'&END_DATE='10/08/2022'&BRANCH='Wadgaon'&AC_TYPE='7'&AC_ACNOTYPE='TD'&AC_OPDATE='10/08/2022'&FLAG1='0'&FLAG2='1'&FLAG3='2'&TRAN_DRCR='D'&CUST_ID='6698'"> 
            CustomerId Wise Deposit List Report</a></li>
+        <li>8]<a href="http://localhost/phpjasper/examples/PrematuredAccountCloseList.php?START_DATE='01/04/2001'&END_DATE='24/12/2021'&BRANCH='Wadgaon'"> 
+           Prematured Account Close List Report</a></li>
+        <li>9]<a href="http://localhost/phpjasper/examples/LoanCashCreditRenewalList.php?START_DATE='01/04/2001'&END_DATE='24/12/2021'&BRANCH='Wadgaon'&AC_TYPE='2'&AC_ACNOTYPE='LN'"> 
+           Loan Cash Credit Renewal List Report</a></li>      
        
     </ul>
 </body>
-
 </html>

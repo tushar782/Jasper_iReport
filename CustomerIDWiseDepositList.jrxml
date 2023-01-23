@@ -12,6 +12,8 @@
 	<field name="AC_INTRATE" class="java.lang.String"/>
 	<field name="AC_NAME" class="java.lang.String"/>
 	<field name="AC_NO" class="java.lang.String"/>
+	<field name="START_DATE" class="java.lang.String"/>
+	<field name="END_DATE" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -45,6 +47,15 @@
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{CUST_ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="146" y="50" width="100" height="20" uuid="b0b4bce7-3a77-4fb2-9e16-783b90f49988"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{START_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="253" y="52" width="100" height="20" uuid="acdb7632-8750-478d-9ace-0ca8ef6aae3e"/>
+				<textFieldExpression><![CDATA[$F{END_DATE}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

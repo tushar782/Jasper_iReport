@@ -28,11 +28,6 @@ $edate = $_GET['edate'];
 $revoke = $_GET['revoke'];
 $bankName = $_GET['bankName'];
 
-// echo $sdate;
-// echo $edate;
-// echo $revoke;
-// echo $bankName;
-
 
 // $bankName = str_replace("'", "", $bankName);
 // $sdate_ = str_replace("'", "", $sdate_);

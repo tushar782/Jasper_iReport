@@ -18,9 +18,10 @@ $conn = pg_connect("host=127.0.0.1 dbname=bank user=postgres password=tushar");
 
 // variables
  $BRANCH  = $_GET['BRANCH'];
-//  $AC_EXPDT = $_GET['AC_EXPDT'];
+//$AC_EXPDT = $_GET['AC_EXPDT'];
  $AC_TYPE = $_GET['AC_TYPE'];
- $START_DATE = $_GET['$START_DATE'];
+ $START_DATE = $_GET['START_DATE'];
+ $CUST_ID =$_GET['CUST_ID'];
  $END_DATE = $_GET['END_DATE'];
  $AC_ACNOTYPE = $_GET['AC_ACNOTYPE'];
  $CUST_ID = $_GET['CUST_ID'];
@@ -30,20 +31,13 @@ $conn = pg_connect("host=127.0.0.1 dbname=bank user=postgres password=tushar");
  $FLAG3 = $_GET['FLAG3'];
 
  
-
-// $ac_type ="'8'";
-// $ac_acnotype = "'SB'";
 $dateformat ="'YYYY/MM/DD'";
 
+$query = '';
+if(  $FLAG1 == 0 ){
+    $query .=  /* SUBMMARY */
 
-if(  $FLAG1 == 0 )
-{
-    $query =  /* SUBMMARY */
-             '(SELECT "AC_ACNOTYPE", AC_TYPE, MASTER."AC_NO" AC_NO,  MASTER."AC_NAME" AC_NAME, MASTER."AC_OPDATE", "AC_CLOSEDT", 
-              "AC_SCHMAMT", "AC_EXPDT",  "AC_REF_RECEIPTNO", MASTER."AC_INTRATE" , (NVL(DEPOTRAN."TRAN_AMOUNT",0) + NVL(DECODE(MASTER."AC_OP_CD",'.$TRAN_DRCR.',
-              MASTER."AC_OP_BAL",(-1) * MASTER."AC_OP_BAL"),0))BALANCE, NVL(MASTER."AC_SCHMAMT",0) DEPO_AMOUNT , 
-              IDMASTER."AC_NO" CUST_ID, IDMASTER."AC_NAME", "CUST_IDNAME" FROM DPMASTER MASTER, IDMASTER    
-              (SELECT "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" , SUM(COALESCE(CASE "TRAN_DRCR" WHEN '.$TRAN_DRCR.' 
+             '(SELECT "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" , SUM(COALESCE(CASE "TRAN_DRCR" WHEN '.$TRAN_DRCR.' 
               THEN CAST("TRAN_AMOUNT" AS FLOAT) ELSE (-1) * CAST("TRAN_AMOUNT" AS FLOAT) END,0)) TRAN_AMOUNT 
               FROM DEPOTRAN 
               INNER JOIN PGMASTER ON DEPOTRAN."TRAN_ACNO" = PGMASTER."BANKACNO"
@@ -51,7 +45,7 @@ if(  $FLAG1 == 0 )
               AND PGMASTER."AC_ACNOTYPE" = DEPOTRAN."TRAN_ACNOTYPE"
               AND PGMASTER."AC_TYPE" = CAST(DEPOTRAN."TRAN_ACTYPE" AS INTEGER)
               AND PGMASTER."AC_NO" = CAST(DEPOTRAN."TRAN_ACNO" AS BIGINT)
-              AND PGMASTER."AC_CUSTID" =5643
+              AND PGMASTER."AC_CUSTID" = '.$CUST_ID.'
               AND ((CAST(PGMASTER."AC_OPDATE" AS DATE) IS NULL) OR (CAST(PGMASTER."AC_OPDATE" AS DATE) <= CAST('.$START_DATE.' AS DATE)))
               AND ((CAST(PGMASTER."AC_CLOSEDT" AS DATE) IS NULL) OR (CAST(PGMASTER."AC_CLOSEDT" AS DATE) > CAST('.$END_DATE.' AS DATE)))
               GROUP BY "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" )
@@ -64,16 +58,16 @@ if(  $FLAG1 == 0 )
               AND DPMASTER."AC_ACNOTYPE" = PIGMYTRAN."TRAN_ACNOTYPE"
               AND DPMASTER."AC_TYPE" = CAST(PIGMYTRAN."TRAN_ACTYPE" AS  INTEGER)
               AND DPMASTER."AC_NO" = CAST(PIGMYTRAN."TRAN_ACNO" AS BIGINT)
-              AND DPMASTER."AC_CUSTID" = 12112
+              AND DPMASTER."AC_CUSTID" = '.$CUST_ID.'
               AND ((CAST(DPMASTER."AC_OPDATE" AS DATE) IS NULL) OR (CAST(DPMASTER."AC_OPDATE" AS DATE) <= CAST('.$START_DATE.' AS DATE)))
               AND ((CAST(DPMASTER."AC_CLOSEDT" AS DATE) IS NULL) OR (CAST(DPMASTER."AC_CLOSEDT" AS DATE) > CAST('.$END_DATE.' AS DATE)))
               GROUP BY "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" )';
 
-              // echo $query;
-}
-elseif ( $FLAG2 == 1)
-{
-    $query = /* DETAILS */
+             //echo $query;
+
+}elseif ( $FLAG2 == 1){
+    $query .= /* DETAILS */
+
             '(SELECT "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" ,SUM(COALESCE(CASE "TRAN_DRCR" WHEN '.$TRAN_DRCR.' 
             THEN cast("TRAN_AMOUNT" as float) ELSE (-1) * cast("TRAN_AMOUNT" as float) END,0)) TRAN_AMOUNT 
              FROM DEPOTRAN 
@@ -81,7 +75,7 @@ elseif ( $FLAG2 == 1)
              WHERE cast(DEPOTRAN."TRAN_DATE" as date) <= cast('.$START_DATE.' as date)
             AND DPMASTER."AC_ACNOTYPE" = DEPOTRAN."TRAN_ACNOTYPE"
              AND DPMASTER."AC_TYPE" = CAST(DEPOTRAN."TRAN_ACTYPE" AS INTEGER)
-             AND DPMASTER."AC_CUSTID" = 6698
+             AND DPMASTER."AC_CUSTID" = '.$CUST_ID.'
              AND ((cast(DPMASTER."AC_OPDATE" as DATE) IS NULL) OR (cast(DPMASTER."AC_OPDATE" as DATE) < cast('.$START_DATE.' as DATE)))
              AND ((cast(DPMASTER."AC_CLOSEDT" as DATE) IS NULL) OR (cast(DPMASTER."AC_CLOSEDT" as DATE) >= cast('.$END_DATE.' as DATE)))
             GROUP BY "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" )
@@ -94,51 +88,46 @@ elseif ( $FLAG2 == 1)
              AND PGMASTER."AC_ACNOTYPE" = PIGMYTRAN."TRAN_ACNOTYPE"
              AND PGMASTER."AC_TYPE" = CAST(PIGMYTRAN."TRAN_ACTYPE" AS INTEGER)
              AND PGMASTER."AC_NO" = CAST(PIGMYTRAN."TRAN_ACNO" AS BIGINT)
-             AND PGMASTER."AC_CUSTID" = 5237
+             AND PGMASTER."AC_CUSTID" = '.$CUST_ID.'
              AND ((PGMASTER."AC_OPDATE" IS NULL) OR (CAST(PGMASTER."AC_OPDATE" AS DATE) <= CAST('.$START_DATE.' AS DATE)))
              AND ((PGMASTER."AC_CLOSEDT" IS NULL) OR (CAST(PGMASTER."AC_CLOSEDT" AS DATE) > CAST('.$END_DATE.' AS DATE)))
              GROUP BY "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" )';
 
              // echo $query;
-}
-else ( $FLAG3 == 2)
-{
-    // $query = /*SHOW ONLY TOP 20 */
-    //         '( SELECT AC_ACNOTYPE, AC_TYPE, MASTER."AC_NO" AC_NO,  MASTER."AC_NAME" AC_NAME, MASTER."AC_OPDATE", "AC_CLOSEDT", "AC_SCHMAMT", "AC_EXPDT",
-    //         "AC_REF_RECEIPTNO", MASTER."AC_INTRATE"  ,(NVL(DEPOTRAN."TRAN_AMOUNT",0) + NVL(DECODE(MASTER."AC_OP_CD",'.$TRAN_DRCR.',
-    //         MASTER."AC_OP_BAL",(-1) * MASTER."AC_OP_BAL"),0))BALANCE , NVL(MASTER."AC_SCHMAMT",0) DEPO_AMOUNT , IDMASTER."AC_NO" CUST_ID,
-    //         IDMASTER."AC_NAME" CUST_IDNAME FROM DPMASTER MASTER, IDMASTER,
-    //         (SELECT "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" ,SUM(COALESCE(CASE "TRAN_DRCR" WHEN '.$TRAN_DRCR.'
-    //         THEN cast("TRAN_AMOUNT" as float) ELSE (-1) * cast("TRAN_AMOUNT" as float) END,0)) TRAN_AMOUNT 
-    //         FROM DEPOTRAN
-    //         INNER JOIN PGMASTER ON DEPOTRAN."TRAN_ACNO" = PGMASTER."BANKACNO" 
-    //         WHERE cast("TRAN_DATE" as date) <= cast('.$START_DATE.' as date)
-    //         AND PGMASTER."AC_ACNOTYPE" = DEPOTRAN."TRAN_ACNOTYPE"
-    //         AND PGMASTER."AC_TYPE" = cast(DEPOTRAN."TRAN_ACTYPE" as integer)
-    //         AND PGMASTER."AC_NO" = cast(DEPOTRAN."TRAN_ACNO" as bigint)
-    //         AND PGMASTER."AC_CUSTID" = 5643 
-    //         AND ((cast(PGMASTER."AC_OPDATE" as date) IS NULL) OR (cast(PGMASTER."AC_OPDATE" as date) <= cast('.$START_DATE.' as date)))
-    //         AND ((cast(PGMASTER."AC_CLOSEDT" as date) IS NULL) OR (cast(PGMASTER."AC_CLOSEDT" as date) > cast('.$END_DATE.' as date)))
-    //         GROUP BY "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" ) 
-    //          UNION ALL
-    //         (SELECT "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO"  , SUM(COALESCE(CASE "TRAN_DRCR" WHEN '.$TRAN_DRCR.' 
-    //         THEN CAST("TRAN_AMOUNT" AS FLOAT) ELSE (-1) * CAST("TRAN_AMOUNT" AS FLOAT) END,0)) TRAN_AMOUNT 
-    //         FROM PIGMYTRAN
-    //         INNER JOIN DPMASTER ON PIGMYTRAN."TRAN_ACNO" = DPMASTER."BANKACNO"
-    //         WHERE CAST("TRAN_DATE" AS DATE) <= CAST('.$START_DATE.' AS DATE)
-    //         AND DPMASTER."AC_ACNOTYPE" = PIGMYTRAN."TRAN_ACNOTYPE"
-    //         AND DPMASTER."AC_TYPE" = CAST(PIGMYTRAN."TRAN_ACTYPE" AS INTEGER)
-    //         AND DPMASTER."AC_NO" = CAST(PIGMYTRAN."TRAN_ACNO" AS BIGINT)
-    //         AND DPMASTER."AC_CUSTID" =5643 
-    //         AND ((CAST(DPMASTER."AC_OPDATE" AS DATE)  IS NULL) OR (CAST(DPMASTER."AC_OPDATE" AS DATE) <= CAST('.$START_DATE.' AS DATE)))
-    //         AND ((CAST(DPMASTER."AC_CLOSEDT" AS DATE) IS NULL) OR (CAST(DPMASTER."AC_CLOSEDT" AS DATE) > CAST('.$END_DATE.' AS DATE)))
-    //         GROUP BY "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" ) tmp ';
+}else{
+    $query .= /*SHOW ONLY TOP 20 */
+    
+            '(SELECT "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" ,SUM(COALESCE(CASE "TRAN_DRCR" WHEN '.$TRAN_DRCR.'
+            THEN cast("TRAN_AMOUNT" as float) ELSE (-1) * cast("TRAN_AMOUNT" as float) END,0)) TRAN_AMOUNT 
+            FROM DEPOTRAN
+            INNER JOIN PGMASTER ON DEPOTRAN."TRAN_ACNO" = PGMASTER."BANKACNO" 
+            WHERE cast("TRAN_DATE" as date) <= cast('.$START_DATE.' as date)
+            AND PGMASTER."AC_ACNOTYPE" = DEPOTRAN."TRAN_ACNOTYPE"
+            AND PGMASTER."AC_TYPE" = cast(DEPOTRAN."TRAN_ACTYPE" as integer)
+            AND PGMASTER."AC_NO" = cast(DEPOTRAN."TRAN_ACNO" as bigint)
+            AND PGMASTER."AC_CUSTID" = '.$CUST_ID.' 
+            AND ((cast(PGMASTER."AC_OPDATE" as date) IS NULL) OR (cast(PGMASTER."AC_OPDATE" as date) <= cast('.$START_DATE.' as date)))
+            AND ((cast(PGMASTER."AC_CLOSEDT" as date) IS NULL) OR (cast(PGMASTER."AC_CLOSEDT" as date) > cast('.$END_DATE.' as date)))
+            GROUP BY "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" ) 
+             UNION ALL
+            (SELECT "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO"  , SUM(COALESCE(CASE "TRAN_DRCR" WHEN '.$TRAN_DRCR.' 
+            THEN CAST("TRAN_AMOUNT" AS FLOAT) ELSE (-1) * CAST("TRAN_AMOUNT" AS FLOAT) END,0)) TRAN_AMOUNT 
+            FROM PIGMYTRAN
+            INNER JOIN DPMASTER ON PIGMYTRAN."TRAN_ACNO" = DPMASTER."BANKACNO"
+            WHERE CAST("TRAN_DATE" AS DATE) <= CAST('.$START_DATE.' AS DATE)
+            AND DPMASTER."AC_ACNOTYPE" = PIGMYTRAN."TRAN_ACNOTYPE"
+            AND DPMASTER."AC_TYPE" = CAST(PIGMYTRAN."TRAN_ACTYPE" AS INTEGER)
+            AND DPMASTER."AC_NO" = CAST(PIGMYTRAN."TRAN_ACNO" AS BIGINT)
+            AND DPMASTER."AC_CUSTID" = '.$CUST_ID.' 
+            AND ((CAST(DPMASTER."AC_OPDATE" AS DATE)  IS NULL) OR (CAST(DPMASTER."AC_OPDATE" AS DATE) <= CAST('.$START_DATE.' AS DATE)))
+            AND ((CAST(DPMASTER."AC_CLOSEDT" AS DATE) IS NULL) OR (CAST(DPMASTER."AC_CLOSEDT" AS DATE) > CAST('.$END_DATE.' AS DATE)))
+            GROUP BY "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" )';
 
               //  echo $query;  
 
 }
 
-               
+    // echo $query;           
 
 $sql =  pg_query($conn,$query);
 
@@ -183,9 +172,9 @@ while($row = pg_fetch_assoc($sql))
 $config = ['driver'=>'array','data'=>$data];
 // echo $filename;
  //print_r($data)
-// $report = new PHPJasperXML();
-// $report->load_xml_file($filename)    
-//     ->setDataSource($config)
-//     ->export('Pdf');
+$report = new PHPJasperXML();
+$report->load_xml_file($filename)    
+    ->setDataSource($config)
+    ->export('Pdf');
     
 ?>

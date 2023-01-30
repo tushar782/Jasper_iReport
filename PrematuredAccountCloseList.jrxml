@@ -2,10 +2,18 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PrematuredAccountCloseList" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9a1de403-2f8d-4da6-9719-412d03248f2a">
 	<property name="ireport.zoom" value="1.6105100000000019"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="41"/>
 	<field name="BRANCH" class="java.lang.String"/>
 	<field name="START_DATE" class="java.lang.String"/>
 	<field name="END_DATE" class="java.lang.String"/>
+	<field name="AC_NO" class="java.lang.String"/>
+	<field name="AC_NAME" class="java.lang.String"/>
+	<field name="AC_OPDATE" class="java.lang.String"/>
+	<field name="AC_MONTHS" class="java.lang.String"/>
+	<field name="AC_DAYS" class="java.lang.String"/>
+	<field name="AC_MATUAMT" class="java.lang.String"/>
+	<field name="AC_NNAME" class="java.lang.String"/>
+	<field name="AC_EXPDT" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -66,7 +74,7 @@
 				<text><![CDATA[AC/NO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="62" y="14" width="24" height="21" uuid="006a043d-4a50-4ae2-85a4-2b3c0f57c54d"/>
+				<reportElement x="62" y="14" width="60" height="21" uuid="006a043d-4a50-4ae2-85a4-2b3c0f57c54d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6"/>
 				</textElement>
@@ -76,7 +84,10 @@
 				<reportElement x="0" y="35" width="555" height="1" uuid="5b536891-9446-4017-9606-5f7ae86b253f"/>
 			</line>
 			<staticText>
-				<reportElement x="0" y="35" width="100" height="20" uuid="00724d11-c614-4bd6-8089-3642b3628015"/>
+				<reportElement x="0" y="36" width="40" height="34" uuid="00724d11-c614-4bd6-8089-3642b3628015"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
 				<text><![CDATA[SCHEME :-]]></text>
 			</staticText>
 			<line>
@@ -137,7 +148,7 @@
 				<text><![CDATA[DAYS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="360" y="19" width="46" height="17" uuid="1e5bc447-3d15-449f-b977-85f31d587942"/>
+				<reportElement x="360" y="19" width="46" height="16" uuid="1e5bc447-3d15-449f-b977-85f31d587942"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6"/>
 				</textElement>
@@ -169,15 +180,79 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[RESOLUTION DATE]]></text>
+				<text><![CDATA[MATURITY DATE]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="319" y="14" width="41" height="20" uuid="1e589525-313c-4ee0-b142-eaf44aa434d3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6"/>
 				</textElement>
-				<text><![CDATA[RESOLUTION AMOUNT]]></text>
+				<text><![CDATA[MATURED AMT]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="40" y="36" width="42" height="20" uuid="5982accd-f312-42eb-845c-0a43f6802940"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AC_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="36" width="60" height="20" uuid="1c389047-0153-4b8e-b8d7-7e4fe7185841"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AC_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="142" y="36" width="43" height="34" uuid="00e6f62c-4c88-41c0-967a-5efc2dc0a671"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AC_OPDATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="201" y="36" width="41" height="34" uuid="f7a5b830-bf7d-4b01-9897-35ee2539d218"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AC_MONTHS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="242" y="36" width="31" height="34" uuid="28ddf71e-19fa-4bcc-9adc-673007519768"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AC_DAYS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="36" width="37" height="34" uuid="7937f49d-f2d4-4a5b-b3d6-7aaf3c19879a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AC_MATUAMT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="366" y="36" width="40" height="34" uuid="2d6af20a-ff80-4bef-8050-a1d1e8ef263c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AC_NNAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="273" y="36" width="46" height="34" uuid="8e9f50cb-742e-48dd-b00d-b48bde40618b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="6"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AC_EXPDT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="76" width="24" height="19" uuid="a50c98c9-3a2b-4ca2-86db-d82699d1aa42"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="103" width="52" height="20" uuid="495b4f18-30ea-4d20-a409-74476652ecbd"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>

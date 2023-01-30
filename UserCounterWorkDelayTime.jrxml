@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UserCounterWorkDelayTime" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b86b8d26-cf29-4f83-a8bf-04eebf1ad807">
+	<property name="ireport.zoom" value="1.7715610000000015"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="19"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="188" y="28" width="169" height="20" uuid="04d7ded6-a349-4552-839f-2813f63411b4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Counter Works Delay Time Details]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="64" width="555" height="1" uuid="f04c54ed-4da3-40ca-b681-0e0f81a1acd2"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="48" height="20" uuid="dade0cde-aed9-48cc-8e52-1b9c33425300"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tran No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="68" y="0" width="51" height="20" uuid="27f3f45f-bf5a-442c-8783-ab13c448d66f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tran Time]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="134" y="0" width="54" height="20" uuid="1d10feaf-9634-4a9a-afc6-4b454f01bbe1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Tran Type]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="203" y="0" width="40" height="20" uuid="e90b5549-fb01-4453-bdba-a38ecf5c3187"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[User ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="258" y="0" width="79" height="20" uuid="8c7e26c0-f115-4f0f-b1f0-b49181fa1de0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Transfer Amount ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="450" y="0" width="82" height="20" uuid="6fe8046e-0ccb-4b7d-8137-d4c1d63131a5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Clearing Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="0" width="68" height="20" uuid="88204471-7b60-4778-9690-f3b9d38ee261"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cash Amount]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

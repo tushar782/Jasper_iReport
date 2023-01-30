@@ -27,6 +27,7 @@ $sdate = $_GET['sdate'];
 $edate = $_GET['edate'];
 $revoke = $_GET['revoke'];
 $bankName = $_GET['bankName'];
+$NAME  = $_GET['NAME'];
 
 
 // $bankName = str_replace("'", "", $bankName);
@@ -34,58 +35,46 @@ $bankName = $_GET['bankName'];
 // $edate_ = str_replace("'", "", $edate_);
 // $branchName = str_replace("'", "", $branchName);
 
-// $query = 'SELECT specialinstruction."INSTRUCTION_DATE", specialinstruction."INSTRUCTION_NO", 
-//           specialinstruction."TRAN_ACNO",specialinstruction."DETAILS", specialinstruction."FROM_DATE", 
-//           specialinstruction."TO_DATE",specialinstruction."SYSADD_LOGIN", specialinstruction."SYSCHNG_LOGIN",
-//           ownbranchmaster."id",ownbranchmaster."NAME"
-//           FROM specialinstruction, ownbranchmaster
-//           where cast("INSTRUCTION_DATE" as date) 
-//            between to_date('.$stdate.','.$dateformate.') and to_date('.$etdate.','.$dateformate.')
-//            AND ownbranchmaster."id" = '.$branch.'  ';
 
-$query = ' SELECT "REVOKE_DATE" FROM SPECIALINSTRUCTION 
-           WHERE CAST(SPECIALINSTRUCTION."INSTRUCTION_DATE" AS DATE) >= CAST('.$sdate.' AS DATE)
-           AND CAST(SPECIALINSTRUCTION."INSTRUCTION_DATE" AS DATE) <= CAST('.$edate.' AS DATE)';
+$query =' SELECT SPECIALINSTRUCTION."INSTRUCTION_DATE" , SPECIALINSTRUCTION."INSTRUCTION_NO" ,SPECIALINSTRUCTION."TRAN_ACNO" ,VWALLMASTER."ac_name", 
+          SPECIALINSTRUCTION."FROM_DATE", SPECIALINSTRUCTION."TO_DATE",  SPECIALINSTRUCTION."SYSADD_LOGIN",SPECIALINSTRUCTION."SYSCHNG_LOGIN",
+          SPECIALINSTRUCTION."DETAILS", SPECIALINSTRUCTION."REVOKE_DATE"  FROM  SPECIALINSTRUCTION 
+          LEFT OUTER JOIN  VWALLMASTER ON SPECIALINSTRUCTION ."TRAN_ACNO" = VWALLMASTER."ac_no"
+          WHERE CAST(SPECIALINSTRUCTION."INSTRUCTION_DATE" AS DATE) >= CAST('.$sdate.' AS DATE) 
+          AND CAST(SPECIALINSTRUCTION."INSTRUCTION_DATE" AS DATE) <= CAST('.$edate.' AS DATE)';
 
-        //    echo $query;
+        // echo $query;
           
 $sql =  pg_query($conn,$query);
 
-
-
 $i = 0;
 
-if (pg_num_rows($sql) == 0)
-{
-    include "errormsg.html";
-}
-else
-{
 while($row = pg_fetch_assoc($sql))
-{
-   
+{ 
 
-    $tmp=[
-        // 'TRAN_ACNO' => $row['TRAN_ACNO'],
-        // 'ACCOUNT_NAME'=>$row['ACCOUNT_NAME'],
-        // 'DETAILS' => $row['DETAILS'],
-        // 'NAME' => $row['NAME'],
-        // 'FROM_DATE'=> $row['FROM_DATE'],
-        // 'TO_DATE'=> $row['TO_DATE'],
-        // 'SYSADD_'=> $row['SYSADD_'],
-        // 'SYSCHING_LOGIN'=> $row['SYSCHING_LOGIN'],
-        'sdate' => '$sdate',
-        'edate' => '$edate',
-        'branch'=> '$branch',
-        'revoke'=> '$revoke',
-        'bankName'=> '$bankName',
+     $tmp=[
+         'INSTRUCTION_NO' => $row['INSTRUCTION_NO'],
+         'INSTRUCTION_DATE' => $row['INSTRUCTION_DATE'],
+         'TRAN_ACNO' => $row['TRAN_ACNO'],
+         'SYSADD_LOGIN' => $row['SYSADD_LOGIN'],
+         'SYSCHNG_LOGIN' => $row['SYSCHNG_LOGIN'],
+         'ACCOUNT_NAME' => $row['ac_name'],
+         'DETAILS' => $row['DETAILS'],
+         'FROM_DATE' => $row['FROM_DATE'],
+         'TO_DATE' => $row['TO_DATE'],
+         'sdate' => $sdate,
+         'edate' => $edate,
+         'revoke' => $revoke,
+         'bankName' => $bankName,
+         'NAME'  => $NAME,
        
-    ];
+     ];
+    
     $data[$i]=$tmp;
     $i++;
     
 }
-// ob_end_clean();
+ob_end_clean();
 
 $config = ['driver'=>'array','data'=>$data];
 //print_r($data);
@@ -93,6 +82,6 @@ $report = new PHPJasperXML();
 $report->load_xml_file($filename)    
     ->setDataSource($config)
     ->export('Pdf');
-    
-}   
+
+
 ?>

@@ -18,12 +18,12 @@ $faker = Faker\Factory::create('en_US');
 
 
  //variables
-// $PRINT_DATE = $_GET['PRINT_DATE'];
+$AC_NO = $_GET['AC_NO'];
 $BRANCH = $_GET['BRANCH'];
 $START_DATE = $_GET['START_DATE'];
 $END_DATE = $_GET['END_DATE'];
-// $AC_ACNOTYPE = $_GET['AC_ACNOTYPE'];
-// $AC_TYPE = $_GET['AC_TYPE'];
+$AC_ACNOTYPE = $_GET['AC_ACNOTYPE'];
+$AC_TYPE = $_GET['AC_TYPE'];
 // $bankName = $_GET['bankName'];
 // $NAME = $_GET['NAME'];
 // $scheme = $_GET['scheme'];      
@@ -32,20 +32,19 @@ $dateformate = "'DD/MM/YYYY'";
 
 
 
- $query = 'SELECT LNMASTER."AC_ACNOTYPE",LNMASTER."AC_TYPE",LNMASTER."AC_NO",LNMASTER."AC_NAME",CUSTOMERADDRESS."AC_WARD",CUSTOMERADDRESS."AC_ADDR",
-           GUARANTERDETAILS."AC_NAME" "GAC_NAME" ,CITYMASTER."CITY_NAME",SCHEMAST."S_NAME"
-           FROM LNMASTER
-           INNER JOIN GUARANTERDETAILS ON LNMASTER."idmasterID" = GUARANTERDETAILS."lnmasterID"
-           LEFT JOIN SHMASTER ON CAST(GUARANTERDETAILS."MEMBER_TYPE" AS INTEGER) = SHMASTER."AC_TYPE"
-           LEFT JOIN SCHEMAST ON  CAST(GUARANTERDETAILS."AC_TYPE" AS INTEGER) = SCHEMAST.ID
-           LEFT JOIN CITYMASTER ON CITYMASTER."CITY_CODE" = LNMASTER."AC_TYPE"
-           LEFT OUTER JOIN CUSTOMERADDRESS ON LNMASTER.id = CUSTOMERADDRESS."idmasterID"
-           AND(LNMASTER."AC_OPDATE" IS NULL OR CAST(LNMASTER."AC_OPDATE" AS DATE) <= DATE('.$START_DATE.')) 
-           AND(LNMASTER."AC_CLOSEDT" IS NULL OR CAST(LNMASTER."AC_CLOSEDT" AS DATE) > DATE('.$END_DATE.')) 
-           AND LNMASTER."AC_ACNOTYPE" = '.$BRANCH.'
-           ORDER BY LNMASTER."AC_ACNOTYPE", LNMASTER."AC_TYPE", LNMASTER."AC_NO"';
+ $query = 'SELECT DPMASTER."AC_MATUAMT",DPMASTER."id",NOMINEELINK."DPMasterID",COUNT(NOMINEELINK."id") As "NO_OF_NOMINEES", CAST(DPMASTER."AC_EXPDT" AS DATE), 
+           DPMASTER."AC_ACNOTYPE" ,DPMASTER."AC_MATUAMT",DPMASTER."AC_EXPDT", DPMASTER."AC_TYPE", DPMASTER."AC_NO", 
+           SCHEMAST."S_NAME",DPMASTER."AC_OPDATE", DPMASTER."AC_MONTHS", DPMASTER."AC_DAYS", NOMINEELINK."AC_NNAME" ,DPMASTER."AC_NAME"
+           From DPMASTER 
+           INNER JOIN NOMINEELINK ON DPMASTER."id" = NOMINEELINK."DPMasterID"
+           INNER JOIN SCHEMAST ON DPMASTER."AC_TYPE" = SCHEMAST."id"
+           WHERE DPMASTER."AC_ACNOTYPE" = '.$AC_ACNOTYPE.' 
+           AND DPMASTER."AC_TYPE" ='.$AC_TYPE.'
+            And DPMASTER."AC_NO" = '.$AC_NO.'
+           GROUP BY DPMASTER."id",NOMINEELINK."DPMasterID",DPMASTER."AC_MATUAMT",NOMINEELINK."id", DPMASTER."AC_EXPDT", DPMASTER."AC_ACNOTYPE", 
+           DPMASTER."AC_TYPE", DPMASTER."AC_NO", SCHEMAST."S_NAME",NOMINEELINK."AC_NNAME"';
 
-        //   echo $query; 
+        //echo $query; 
 
           
 $sql =  pg_query($conn,$query);
@@ -55,19 +54,23 @@ while($row = pg_fetch_assoc($sql))
 { 
 
      $tmp=[
-        // 'AC_NO' => $row['AC_NO'],
-        // 'AC_NAME' => $row['GAC_NAME'],
-        // 'AC_WARD' => $row['AC_WARD'],
-        // 'AC_ADDR' => $row['AC_ADDR'],
-        // 'CITY_NAME'=> $row['CITY_NAME'],
-        // 'GAC_NAME'=> $row['GAC_NAME'],
-        // 'S_NAME' => $row['S_NAME'],
+      
+        'AC_NAME' => $row['AC_NAME'],
+        'AC_NNAME' => $row['AC_NNAME'],
+        'AC_EXPDT' => $row['AC_EXPDT'],
+        'AC_MATUAMT'=> $row['AC_MATUAMT'],
+        'AC_OPDATE'=> $row['AC_OPDATE'],
+        'S_NAME' => $row['S_NAME'],
+        'AC_MONTHS' => $row['AC_MONTHS'],
+        'AC_DAYS' => $row['AC_DAYS'],
          'BRANCH' => $BRANCH,
          'START_DATE' => $START_DATE,
          'END_DATE' => $END_DATE,
-        // 'AC_ACNOTYPE' => $AC_ACNOTYPE,
-        // 'AC_TYPE' => $AC_TYPE,
-        // 'bankName'=> $bankName,
+        'AC_ACNOTYPE' => $AC_ACNOTYPE,
+        'AC_TYPE' => $AC_TYPE,
+        'BRANCH' => $BRANCH,
+        'AC_NO' => $AC_NO,
+       // 'bankName'=> $bankName,
         // 'NAME' => $NAME,
         // 'BRANCH_CODE' => $BRANCH_CODE,
         // 'PRINT_DATE' => $PRINT_DATE,
@@ -81,7 +84,7 @@ while($row = pg_fetch_assoc($sql))
 ob_end_clean();
 
 $config = ['driver'=>'array','data'=>$data];
-// print_r($data);
+//print_r($data);
 $report = new PHPJasperXML();
 $report->load_xml_file($filename)    
     ->setDataSource($config)

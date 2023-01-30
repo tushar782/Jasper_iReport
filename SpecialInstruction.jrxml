@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SpecialInstruction" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isTitleNewPage="true" isSummaryNewPage="true" isSummaryWithPageHeaderAndFooter="true" uuid="804f9bd0-a7d5-436a-97ab-82dcd6b658b8">
-	<property name="ireport.zoom" value="1.3310000000000004"/>
-	<property name="ireport.x" value="28"/>
+	<property name="ireport.zoom" value="1.331000000000001"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<field name="INSTRUCTION_DATE" class="java.lang.String"/>
 	<field name="INSTRUCTION_NO" class="java.lang.String"/>
@@ -12,15 +12,15 @@
 	<field name="TO_DATE" class="java.lang.String"/>
 	<field name="SYSADD_LOGIN" class="java.lang.String"/>
 	<field name="SYSCHNG_LOGIN" class="java.lang.String"/>
-	<field name="stdate_" class="java.lang.String"/>
-	<field name="etdate_" class="java.lang.String"/>
+	<field name="sdate" class="java.lang.String"/>
+	<field name="edate" class="java.lang.String"/>
 	<field name="bankName" class="java.lang.String"/>
 	<field name="NAME" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="45" splitType="Stretch">
+		<band height="44" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="24" width="43" height="20" uuid="1baa1cab-a722-41ab-85f4-699a15f63d49"/>
 				<box leftPadding="3"/>
@@ -45,14 +45,14 @@
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{stdate_}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{sdate}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="540" y="24" width="100" height="20" uuid="c1a0f4f8-a217-4c46-ac78-8353920c3a1a"/>
 				<textElement textAlignment="Center">
 					<font size="12" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{etdate_}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{edate}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="0" y="0" width="622" height="20" uuid="f1e28fa1-46fd-40d9-a83e-a73de83d3841"/>
@@ -211,21 +211,21 @@ Code]]></text>
 				<textFieldExpression><![CDATA[$F{TO_DATE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="684" y="1" width="105" height="20" uuid="8521d3a5-534e-42b8-b9cd-32294664b68d"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{SYSCHNG_LOGIN}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="622" y="0" width="62" height="20" uuid="1a99ddfc-b209-440c-b243-d085d9c2bb67"/>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{SYSADD_LOGIN}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="684" y="1" width="77" height="20" uuid="8521d3a5-534e-42b8-b9cd-32294664b68d"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{SYSCHNG_LOGIN}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="54" splitType="Stretch">
+		<band height="90" splitType="Stretch">
 			<line>
-				<reportElement x="0" y="18" width="761" height="1" uuid="75bd4981-dcc0-42b6-875f-1f7eec01bf20"/>
+				<reportElement x="0" y="39" width="761" height="1" uuid="75bd4981-dcc0-42b6-875f-1f7eec01bf20"/>
 			</line>
 			<textField>
 				<reportElement x="656" y="19" width="67" height="20" uuid="16dd1080-9015-4d48-bc9b-5aebf65db604"/>
@@ -238,16 +238,47 @@ Code]]></text>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 			<textField pattern="d/M/yyyy h.mm a">
-				<reportElement x="0" y="19" width="100" height="20" uuid="95368ca6-194d-426c-b1e1-028d19c02a00"/>
+				<reportElement x="0" y="39" width="100" height="20" uuid="95368ca6-194d-426c-b1e1-028d19c02a00"/>
 				<box rightPadding="2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="100" y="19" width="71" height="20" uuid="6ed4bff2-9f4d-4ce3-95f0-a4351a2c7aa1"/>
+				<reportElement x="100" y="39" width="71" height="20" uuid="6ed4bff2-9f4d-4ce3-95f0-a4351a2c7aa1"/>
 				<textElement textAlignment="Left" verticalAlignment="Middle"/>
 				<text><![CDATA[SUPERVISOR]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="519" y="19" width="121" height="20" uuid="c00c54ed-b1df-42bb-9e06-67e781d740a9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Chairman]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="375" y="19" width="120" height="20" uuid="41d49ce6-a282-42e4-8ebb-980d914d59cd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Branch Manager]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="230" y="19" width="100" height="20" uuid="418cc4bd-6f3d-4ad0-bd8b-f2e70d34fa65"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Chashier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="55" y="19" width="100" height="20" uuid="242ba90b-2166-427a-9152-f060d851f9ac"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+				</textElement>
+				<text><![CDATA[Clerk]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="761" height="1" uuid="62e4552a-d1aa-4e3d-9346-f9387c2ff340"/>
+			</line>
 		</band>
 	</pageFooter>
 </jasperReport>

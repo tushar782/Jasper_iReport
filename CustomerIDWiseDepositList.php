@@ -93,7 +93,7 @@ if(  $FLAG1 == 0 ){
              AND ((PGMASTER."AC_CLOSEDT" IS NULL) OR (CAST(PGMASTER."AC_CLOSEDT" AS DATE) > CAST('.$END_DATE.' AS DATE)))
              GROUP BY "TRAN_ACNOTYPE", "TRAN_ACTYPE", "TRAN_ACNO" )';
 
-             // echo $query;
+              echo $query;
 }else{
     $query .= /*SHOW ONLY TOP 20 */
     
@@ -127,7 +127,7 @@ if(  $FLAG1 == 0 ){
 
 }
 
-    // echo $query;           
+  //echo $query;           
 
 $sql =  pg_query($conn,$query);
 

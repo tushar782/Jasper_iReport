@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UserWorkingReportList" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="36d90c8b-ad92-4a41-b7e6-dc1741aa2038">
+	<property name="ireport.zoom" value="1.4641000000000028"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="BRANCH" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="67" splitType="Stretch">
+			<staticText>
+				<reportElement x="181" y="29" width="146" height="20" uuid="55ac874d-79be-43af-847d-d106fb5cc9e6"/>
+				<text><![CDATA[User Wise Productivity / Works]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="39" y="44" width="71" height="17" uuid="78906c02-3f8f-4ab1-807c-32e0bf7f7120"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{BRANCH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="9" width="100" height="20" uuid="ba109b04-387e-4eb6-8fbf-dc84da464f1e"/>
+				<text><![CDATA[Demo ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="44" width="39" height="17" uuid="eaee5cae-2c52-4655-8d96-773860ebfcb2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Branch:-]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="61" width="555" height="1" uuid="1cd413b8-0b57-4c93-96ed-c3d719b3cb90"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="23" height="35" uuid="a9d75fcf-fc6d-43d7-832d-16ec6a93857e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[SR. NO.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="244" y="0" width="83" height="20" uuid="80dc9196-719f-4b38-b9a9-ad536d91a09a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Transfer Voucher]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="156" y="0" width="67" height="20" uuid="8df37dfe-b989-4615-a6a9-06d0ebecdc25"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Cash Voucher]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="343" y="0" width="82" height="20" uuid="b7d121e8-fc03-4a8a-97fb-cedeb09084ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Clearing Voucher]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="37" y="0" width="71" height="20" uuid="f07142f5-164c-4350-8088-c0dc9311aead"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[USER ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="493" y="0" width="62" height="20" uuid="246d3698-4f42-40e4-b095-ea8543c8ac7c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[New Account]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

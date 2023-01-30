@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LoanCashCreditRenewalList" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ade0eceb-e4d7-452b-95fd-3841ef9ef5b0">
 	<property name="ireport.zoom" value="2.1435888100000025"/>
-	<property name="ireport.x" value="235"/>
-	<property name="ireport.y" value="124"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="28"/>
 	<field name="BRANCH" class="java.lang.String"/>
 	<field name="PRINT_DATE" class="java.lang.String"/>
 	<field name="END_DATE" class="java.lang.String"/>
 	<field name="AC_NO" class="java.lang.String"/>
 	<field name="NAME" class="java.lang.String"/>
-	<field name="RENEWAL_DATE" class="java.lang.String"/>
 	<field name="AC_DRAWPOWER_AMT" class="java.lang.String"/>
 	<field name="AC_SANCTION_AMT" class="java.lang.String"/>
 	<background>
@@ -122,13 +121,6 @@
 				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="176" y="12" width="35" height="20" uuid="3c3fd377-e9bf-472f-a2c3-b8059ca5de22"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="6"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{RENEWAL_DATE}]]></textFieldExpression>
-			</textField>
-			<textField>
 				<reportElement x="460" y="12" width="32" height="20" uuid="e1938fa2-8fba-4a04-b8e2-21c9a66b7edc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="4"/>
@@ -138,7 +130,7 @@
 			<textField>
 				<reportElement x="512" y="12" width="41" height="20" uuid="64ce738e-9df7-4519-82a3-53c739b526f4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font size="6"/>
+					<font size="4"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{AC_SANCTION_AMT}]]></textFieldExpression>
 			</textField>

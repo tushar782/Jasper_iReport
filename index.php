@@ -20,9 +20,9 @@
            Prematured Account Close List Report</a></li>
         <li>9]<a href="http://localhost/phpjasper/examples/LoanCashCreditRenewalList.php?START_DATE='01/04/2021'&END_DATE='24/12/2021'&BRANCH='Wadgaon'&AC_TYPE='14'&AC_ACNOTYPE='LN'"> 
            Loan Cash Credit Renewal List Report</a></li>      
-        <li>10]<a href="http://localhost/phpjasper/examples/UserWorkingReportList.php?TRAN_DATE='27/01/2023'&BRANCH='NIPANI'"> 
+        <li>10]<a href="http://localhost/phpjasper/examples/UserWorkingReportList.php?TRAN_DATE='27/01/2023'&BRANCH='NIPANI'$schm='CS'$schm1='TR'&schm2='CL'&schm3='JV'"> 
            User Working Report List </a></li>
-        <li>11]<a href="http://localhost/phpjasper/examples/.php?START_DATE='01/04/2021'"> 
+        <li>11]<a href="http://localhost/phpjasper/examples/UserCounterWorkDelayTime.php?BRANCH='NIPANI'"> 
            User Counter Work Delay Time Report</a></li>    
         <li>12]<a href="http://localhost/phpjasper/examples/.php?START_DATE='01/04/2021'"> 
            Loan Cash Credit Turn Over List Report</a></li>  

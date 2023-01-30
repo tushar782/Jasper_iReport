@@ -2,7 +2,14 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="UserCounterWorkDelayTime" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b86b8d26-cf29-4f83-a8bf-04eebf1ad807">
 	<property name="ireport.zoom" value="1.7715610000000015"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="19"/>
+	<property name="ireport.y" value="63"/>
+	<field name="TRAN_NO" class="java.lang.String"/>
+	<field name="TRAN_TIME" class="java.lang.String"/>
+	<field name="TRAN_TYPE" class="java.lang.String"/>
+	<field name="TRANSFER_AMOUNT" class="java.lang.String"/>
+	<field name="CLEARING_AMOUNT" class="java.lang.String"/>
+	<field name="CASH_AMOUNT" class="java.lang.String"/>
+	<field name="BRANCH" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -16,6 +23,19 @@
 			<line>
 				<reportElement x="0" y="64" width="555" height="1" uuid="f04c54ed-4da3-40ca-b681-0e0f81a1acd2"/>
 			</line>
+			<staticText>
+				<reportElement x="0" y="8" width="58" height="20" uuid="77110e4f-896f-493e-98d4-5c82870bad1f"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[DEMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="37" width="53" height="27" uuid="16ce681e-ee5b-473a-8695-403e402359e3"/>
+				<text><![CDATA[BRANCH:-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="58" y="37" width="66" height="20" uuid="7159fafa-3828-415c-9d25-7a63a503df44"/>
+				<textFieldExpression><![CDATA[$F{BRANCH}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -58,7 +78,50 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="58" height="20" uuid="64ce4894-63fc-46de-bd71-ab6729db2693"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRAN_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="58" y="0" width="66" height="20" uuid="8f44e2da-b9b7-4be4-8235-cbfdde2ad28f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRAN_TIME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="124" y="0" width="68" height="20" uuid="17076555-0815-42a6-a2a8-e4bc50296535"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRAN_TYPE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="243" y="0" width="100" height="20" uuid="56a111dd-edf7-44ad-80e6-98cd90be1831"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TRANSFER_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="450" y="0" width="100" height="20" uuid="7b850702-ea83-44a8-beda-b99f88c3e365"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CLEARING_AMOUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="357" y="0" width="81" height="20" uuid="d58538eb-1b8d-445f-a50d-cb775e90493f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CASH_AMOUNT}]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnHeader>
 	<detail>
 		<band height="125" splitType="Stretch"/>

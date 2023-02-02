@@ -23,8 +23,12 @@
         <li>10]<a href="http://localhost/phpjasper/examples/UserWorkingReportList.php?TRAN_DATE='27/01/2023'&BRANCH='NIPANI'$schm='CS'$schm1='TR'&schm2='CL'&schm3='JV'"> 
            User Working Report List </a></li>
         <li>11]<a href="http://localhost/phpjasper/examples/UserCounterWorkDelayTime.php?BRANCH='NIPANI'"> 
-           User Counter Work Delay Time Report</a></li>    
-        <li>12]<a href="http://localhost/phpjasper/examples/.php?START_DATE='01/04/2021'"> 
+           User Counter Work Delay Time Report</a></li>   
+        <li>12]<a href="http://localhost/phpjasper/examples/HighRecPay.php?START_DATE='12/08/2022'&END_DATE='12/08/2022'&BRANCH='NIPANI'&AC_TYPE=1"> 
+           High Rec Pay Report</a></li>   
+       <li>13]<a href="http://localhost/phpjasper/examples/ExcessCashDetails.php?START_DATE='12/08/2022'&END_DATE='12/08/2022'&BRANCH='NIPANI'"> 
+           Excess Cash Details Report</a></li>     
+        <li>14]<a href="http://localhost/phpjasper/examples/.php?START_DATE='01/04/2021'"> 
            Loan Cash Credit Turn Over List Report</a></li>  
     </ul>
 </body>

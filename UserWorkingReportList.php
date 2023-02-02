@@ -124,6 +124,6 @@ $config = ['driver'=>'array','data'=>$data];
 $report = new PHPJasperXML();
 $report->load_xml_file($filename)    
     ->setDataSource($config)
-    ->export('Pdf');
+    ->export('Pdf')
     
 ?>

@@ -145,7 +145,7 @@
 				<textFieldExpression><![CDATA[$F{TRAN_AMOUNT}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="260" y="19" width="83" height="20" uuid="43502701-9ce5-4a7c-907f-b93d7728c820"/>
+				<reportElement x="291" y="15" width="100" height="20" uuid="b6f612c1-2b31-46e0-93c7-6823458e6941"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="6"/>
 				</textElement>

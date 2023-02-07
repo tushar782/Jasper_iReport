@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ShareIssueRegister" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5c6752fe-e724-490c-a909-1b7afc796848">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="BRANCH" class="java.lang.String"/>
+	<field name="START_DATE" class="java.lang.String"/>
+	<field name="END_DATE" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="64" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="138" height="20" uuid="dda0f23f-4651-41c5-bc63-f753c9eaa330"/>
+				<textElement textAlignment="Center">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Compserv Test Bank]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="31" width="40" height="20" uuid="0f235c55-9e6c-41fa-92e3-438f4ae96a5d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Branch:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="31" width="67" height="20" uuid="b3df046d-4210-46ab-bd97-45c5a1c77cd0"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{BRANCH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="171" y="31" width="121" height="20" uuid="09e4b49f-a510-45f1-87e4-d57a0f2c316b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Share Issue Register From ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="292" y="31" width="73" height="20" uuid="9c7ac4c2-cb24-4cca-8918-4ce908a2183a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{START_DATE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="365" y="31" width="74" height="20" uuid="21e73b06-4b07-4416-b670-2f73ac5100a2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{END_DATE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="6" y="0" width="24" height="29" uuid="5670d759-7f3e-4dbc-981a-a2c24d1b4aea"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Sr. No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="51" y="0" width="42" height="20" uuid="c0e183d3-6fd0-48ad-8412-3bf8fa797dcb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Member]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="107" y="0" width="42" height="20" uuid="559b34ba-6a40-4003-aa34-650d9ab5f4bd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="161" y="0" width="29" height="20" uuid="ae238385-b933-4338-aec0-918656af8823"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[City]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="0" width="45" height="29" uuid="d1837861-40aa-40ec-8753-7952e8c50848"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Certificate Number]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="257" y="0" width="35" height="34" uuid="843c04e9-aa0d-47a0-8ba3-8eceb0d25bfb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[No. of Shares]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="0" width="61" height="29" uuid="686f5b07-ac85-4bfa-858b-28009f9de095"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Share Amount]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="382" y="0" width="40" height="20" uuid="6d2dc670-e79b-436a-9225-6c110ef33e3c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Shares]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="439" y="0" width="47" height="34" uuid="08922f85-a477-4a57-b55b-60e61c950e45"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Resolution Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="1" width="50" height="39" uuid="4cbac50f-4501-40c2-8b64-5d5aa6b3b88e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Resolution No.]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

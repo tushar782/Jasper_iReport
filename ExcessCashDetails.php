@@ -55,27 +55,39 @@ $dateformate = "'DD/MM/YYYY'";
             AND ACMASTER."AC_NO" = 1 ';
 
             
-$query1 = "SELECT SANCTIONED_CASH_LIMIT FROM SYSPARA";        
+$query1 = ' SELECT "SANCTIONED_CASH_LIMIT" FROM SYSPARA '; 
 
          // echo $query; 
 
           
 $sql =  pg_query($conn,$query);
-$sql =  pg_query($conn,$query1);
+$sql1 =  pg_query($conn,$query1);
+$SECTION_CASH_LIMIT = 0;
+$TRAN_DATE = 0;
+$TRAN_AMOUNT = 0; 
+$START_DATE = ['START_DATE'];
+$END_DATE = ['END_DATE'];
+$BRANCH = ['BRANCH'];
 
-      //echo $sql;
+while($row = pg_fetch_assoc($sql1))
+{
+{
+    $SECTION_CASH_LIMIT = $row['SANCTIONED_CASH_LIMIT'];   
+}
+     //echo $sql;
+    // echo $sql1;
+
 $i = 0;
 while($row = pg_fetch_assoc($sql))
 {  
 
      $tmp=[
-        'SANCTIONED_CASH_LIMIT' => $row['SANCTIONED_CASH_LIMIT'],
+        
         'TRAN_DATE' => $row['TRAN_DATE'],
         'TRAN_AMOUNT' => $row['closing_balance'],
         'START_DATE'=> $START_DATE,
         'END_DATE' => $END_DATE,
-        'BRANCH' => $BRANCH,
-       
+        'BRANCH' => $BRANCH,  
        
      ];
     
@@ -83,10 +95,18 @@ while($row = pg_fetch_assoc($sql))
     $i++;
     
 }
+
+$tmp =[
+    
+    'SANCTIONED_CASH_LIMIT' => $SECTION_CASH_LIMIT,
+    'TRAN_DATE' => $TRAN_DATE,
+    'TRAN_AMOUNT' => $TRAN_AMOUNT,
+];
+}
 ob_end_clean();
 
 $config = ['driver'=>'array','data'=>$data];
- //print_r($data);
+//  print_r($data);
 $report = new PHPJasperXML();
 $report->load_xml_file($filename)    
     ->setDataSource($config)

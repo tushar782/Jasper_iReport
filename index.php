@@ -28,7 +28,13 @@
            High Rec Pay Report</a></li>   
        <li>13]<a href="http://localhost/phpjasper/examples/ExcessCashDetails.php?START_DATE='12/08/2022'&END_DATE='12/08/2022'&BRANCH='NIPANI'"> 
            Excess Cash Details Report</a></li>     
-        <li>14]<a href="http://localhost/phpjasper/examples/.php?START_DATE='01/04/2021'"> 
+       <li>14]<a href="http://localhost/phpjasper/examples/GoldSilverSecurity.php?START_DATE='01/01/2001'&END_DATE='02/02/2023'&BRANCH='KOLHAPUR'&AC_TYPE='3'&AC_ACNOTYPE='LN'" > 
+           Gold Silver Security Report</a></li>  
+       <li>15]<a href="http://localhost/phpjasper/examples/.php?START_DATE='01/01/2001'&END_DATE='02/02/2023'&BRANCH='KOLHAPUR'" > 
+           Shares Issue Register Report</a></li>   
+       <li>16]<a href="http://localhost/phpjasper/examples/.php?START_DATE='01/01/2001'&END_DATE='02/02/2023'&BRANCH='KOLHAPUR'" > 
+           Gold Silver Security Report</a></li>  
+       <li>17]<a href="http://localhost/phpjasper/examples/.php?START_DATE='01/04/2021'"> 
            Loan Cash Credit Turn Over List Report</a></li>  
     </ul>
 </body>
